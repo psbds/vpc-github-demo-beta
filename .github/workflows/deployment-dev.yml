@@ -8,7 +8,7 @@ on:
 
 env:
   AZURE_WEBAPP_NAME: contosoweather  
-  AZURE_WEBAPP_SLOT: dev
+  AZURE_WEBAPP_SLOT: develop
  
 jobs:
   greet:
