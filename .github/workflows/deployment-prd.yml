@@ -1,6 +1,7 @@
 name: Deployment [Prd]
 
 on:
+  workflow_dispatch:
   pull_request:
     branches: 
     - master
