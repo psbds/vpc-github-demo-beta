@@ -3,7 +3,7 @@ name: Deployment [Prd]
 on:
   workflow_dispatch:
   release:
-    types: [published]
+    types: [released]
 
 env:
   AZURE_WEBAPP_NAME: contosoweather  
