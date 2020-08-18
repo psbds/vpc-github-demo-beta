@@ -1,0 +1,27 @@
+name: Deployment [Prd]
+
+on:
+  workflow_dispatch:
+  release:
+    types: [released]
+
+env:
+  AZURE_WEBAPP_NAME: contosoweather  
+  AZURE_WEBAPP_SLOT: production
+ 
+jobs:
+  greet:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core SDK
+      uses: actions/setup-dotnet@v1.6.0
+    - name: Package Project
+      run: dotnet publish Contoso/Contoso.csproj -o output
+    - name: Azure WebApp
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.AZURE_WEBAPP_NAME }}
+        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        slot-name: ${{ env.AZURE_WEBAPP_SLOT }}
+        package: output
